@@ -1,4 +1,4 @@
-name: Primary Website Deployment
+name: Re-usable Website Deployment
 on:
   push:
     branches:
