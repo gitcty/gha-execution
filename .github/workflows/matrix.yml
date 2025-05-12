@@ -16,6 +16,7 @@ jobs:
         exclude:
           - node-version: 12
           - oper-sys: windows-latest
+          
     runs-on: ${{ matrix.oper-sys }}
     steps:
       - name: Get Code
