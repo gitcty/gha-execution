@@ -10,8 +10,15 @@ on:
     secrets:
       some-secret:
         required: true
+    outputs:
+      result:
+        description: The result of the reusable workflow
+        value: ${{ jobs.deploy.outputs.outcome }}
+
 jobs:
-  deploy:
+  deploy:  
+    outputs:
+      outcome: ${{ steps.set-result.outputs.step-result }}
     runs-on: ubuntu-latest
     steps:
       - name: get artifacts downloaded
@@ -22,3 +29,6 @@ jobs:
         run: ls -ltra
       - name: output info
         run: echo "Deploying & uploading from [reusable workflow]"
+      - name: set result output
+        id: set-result
+        run: echo "step-result=success" >> $GITHUB_OUTPUT
